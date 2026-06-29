@@ -89,4 +89,45 @@
 
     
 })(jQuery);
+const toggle = document.getElementById("themeToggle");
+const icon = toggle.querySelector("i");
 
+if(localStorage.getItem("theme") === "dark"){
+    enableDark();
+}
+
+toggle.addEventListener("click",()=>{
+
+    if(document.body.classList.contains("dark-mode")){
+        disableDark();
+    }else{
+        enableDark();
+    }
+
+});
+
+function enableDark(){
+
+    document.body.classList.add("dark-mode");
+
+    document.querySelector(".navbar").classList.remove("navbar-light","bg-white");
+    document.querySelector(".navbar").classList.add("navbar-dark","bg-dark");
+
+    icon.classList.remove("fa-moon");
+    icon.classList.add("fa-sun");
+
+    localStorage.setItem("theme","dark");
+}
+
+function disableDark(){
+
+    document.body.classList.remove("dark-mode");
+
+    document.querySelector(".navbar").classList.remove("navbar-dark","bg-dark");
+    document.querySelector(".navbar").classList.add("navbar-light","bg-white");
+
+    icon.classList.remove("fa-sun");
+    icon.classList.add("fa-moon");
+
+    localStorage.setItem("theme","light");
+}
